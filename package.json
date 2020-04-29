@@ -1,0 +1,26 @@
+{
+  "name": "gestione_progetti",
+  "version": "1.0.0",
+  "description": "## Appunti e cose da fare",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FabioZTessitore/gestione_progetti.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FabioZTessitore/gestione_progetti/issues"
+  },
+  "homepage": "https://github.com/FabioZTessitore/gestione_progetti#readme",
+  "dependencies": {
+    "ejs": "^3.1.2",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "sqlite3": "^4.2.0"
+  }
+}
