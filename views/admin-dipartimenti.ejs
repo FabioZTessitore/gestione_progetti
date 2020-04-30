@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>ACME - Gestione Progetti - Amministrazione</title>
+    </head>
+
+    <body>
+        <h1>Gestione Progetti</h1>
+
+        <h2>Amministrazione</h2>
+        
+        <form action = "/aggiungi_dipartimento"  method="POST">
+            <input type="text" name="nome">
+            <input type="submit" value="Aggiungi dipartimento">
+        </form>
+
+        <ul>
+        <% dipartimenti.forEach(function (dipartimento) { %>
+            <li><%= dipartimento.nome %></li>
+        <% }); %>
+        </ul>
+    </body>
+</html>
