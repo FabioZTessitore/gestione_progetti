@@ -1,12 +1,12 @@
 .header on
 .mode column
 
-DROP TABLE IF EXISTS Dipartimento;
-CREATE TABLE Dipartimento
+DROP TABLE IF EXISTS Dipartimenti;
+CREATE TABLE Dipartimenti
 (
     id INTEGER PRIMARY KEY,
     nome TEXT
 );
 
-INSERT INTO Dipartimento (nome) VALUES ("diocane");
-SELECT * FROM Dipartimento;
+INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento 1");
+SELECT * FROM Dipartimenti;
