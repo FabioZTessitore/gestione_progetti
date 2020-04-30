@@ -2,7 +2,7 @@
 
 ## Appunti e cose da fare
 
-1. Creare una landing page con link a pagine di amministrazione
+1. ~~Creare una landing page con link a pagine di amministrazione~~
 2. Pagina di amministrazione Dipartimenti (GET /dipartimenti)
 3. Creazione di un nuovo dipartimento con nome (POST /dipartimenti)
 4. Pagina di amministrazione singolo dipartimento (GET /dipartimenti/:id)
