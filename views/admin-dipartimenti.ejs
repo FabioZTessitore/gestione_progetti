@@ -13,18 +13,24 @@
 
         <h2>Amministrazione</h2>
 
-        <% dipartimenti.forEach(function (dipartimento) { %>
+        <!-- il form va fuori dal ciclo di visualizzazione dei dipartimenti -->
+        <form action = "/admin/dipartimenti"  method="POST">
+            <!-- qui bisogna chiedere all'utente il nome del dipartimento,
+                 mentre l'id verra' assegnato dal server (tramite il db).
+                PS. non preoccuparti della visualizzazione "al contrario"
+                tra etichetta e campo di testo, poi si aggiustera'
+                con i fogli di stile.
+                PS. Cancella questi commenti se tutto chiaro -->
+            <input type="text" name="nome" id="nome">
+            <label for="nome">Nome Dipartimento:</label>
 
-        <form action = "/aggiungi_dipartimento"  method="POST">
-            <input type="submit" value="Aggiungi dipartimento">
-            <input type="hidden" name="id" value="<%= dipartimenti.id %>">
+            <input type="submit" value="Crea dipartimento">
         </form>
-        
-        <ul>
-            <li><%= dipartimento.nome %></li>
-        <% }); %>
-        </ul>
 
-       
+        <ul>
+            <% dipartimenti.forEach(function (dipartimento) { %>
+                <li><%= dipartimento.nome %></li>
+            <% }); %>
+        </ul>
     </body>
 </html>

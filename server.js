@@ -28,15 +28,6 @@ app.get("/admin", function (req, res) {
 
 app.use('/admin', adminRoutes(db));
 
-
-app.post("/aggiungi_dipartimento", function(req,res){
-   const nome = req.body.nome;
-   const sql = "INSERT INTO Dipartimenti (nome) VALUES (?);";
-   db.all(sql, [nome], function(err,rows){
-       res.redirect("/");
-    });
- });
-
 app.use(function (req, res) {
     res.status(404);
     res.sendFile(path.join(__dirname, "public", "404.html"));
