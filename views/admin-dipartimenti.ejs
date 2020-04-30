@@ -12,16 +12,19 @@
         <h1>Gestione Progetti</h1>
 
         <h2>Amministrazione</h2>
-        
-        <form action = "/aggiungi_dipartimento"  method="POST">
-            <input type="text" name="nome">
-            <input type="submit" value="Aggiungi dipartimento">
-        </form>
 
-        <ul>
         <% dipartimenti.forEach(function (dipartimento) { %>
+
+        <form action = "/aggiungi_dipartimento"  method="POST">
+            <input type="submit" value="Aggiungi dipartimento">
+            <input type="hidden" name="id" value="<%= dipartimenti.id %>">
+        </form>
+        
+        <ul>
             <li><%= dipartimento.nome %></li>
         <% }); %>
         </ul>
+
+       
     </body>
 </html>

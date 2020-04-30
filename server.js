@@ -34,11 +34,13 @@ app.get("/dipartimenti", function (req, res) {
     });
 });
 
-// app.post("/aggiungi_dipartimento", function(req,res){
-//     const nome = req.body.nome;
-//     const sql = "INSERT INTO Dipartimento (nome) VALUES (?)";
-//     db.run(sql, [nome], function(err,rows){});
-// });
+app.post("/aggiungi_dipartimento", function(req,res){
+   const nome = req.body.nome;
+   const sql = "INSERT INTO Dipartimenti (nome) VALUES (?);";
+   db.all(sql, [nome], function(err,rows){
+       res.redirect("/");
+    });
+ });
 
 app.use(function (req, res) {
     res.status(404);
