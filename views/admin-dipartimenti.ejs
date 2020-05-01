@@ -13,14 +13,9 @@
 
         <h2>Amministrazione</h2>
 
-        <!-- il form va fuori dal ciclo di visualizzazione dei dipartimenti -->
+        <p><a href="/admin">Admin</a></p>
+
         <form action = "/admin/dipartimenti"  method="POST">
-            <!-- qui bisogna chiedere all'utente il nome del dipartimento,
-                 mentre l'id verra' assegnato dal server (tramite il db).
-                PS. non preoccuparti della visualizzazione "al contrario"
-                tra etichetta e campo di testo, poi si aggiustera'
-                con i fogli di stile.
-                PS. Cancella questi commenti se tutto chiaro -->
             <input type="text" name="nome" id="nome">
             <label for="nome">Nome Dipartimento:</label>
             <input type="submit" value="Crea dipartimento">

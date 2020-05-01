@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const router = express.Router();
-router.use( bodyParser.urlencoded({ extended: false }) );
 
+router.use( bodyParser.urlencoded({ extended: false }) );
 
 module.exports = function (db) {
     
@@ -16,11 +16,10 @@ module.exports = function (db) {
     });
 
     router.post("/dipartimenti", function (req, res) {
-        const nome = (req.body.nome);
-        console.log("nome dipartimento: ", nome);
+        const nome = req.body.nome;
         const sql = "INSERT INTO Dipartimenti (nome) VALUES (?);";
         db.run(sql, [nome], function (err) {
-               res.redirect("/");
+               res.redirect("/admin/dipartimenti");
         });
     });
 

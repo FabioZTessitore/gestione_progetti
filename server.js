@@ -9,7 +9,6 @@ const adminRoutes = require('./app/admin.js');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-
 const db = new sqlite3.Database("organizzazione.db", function(err) {
     if (err) {
         console.log(err);
