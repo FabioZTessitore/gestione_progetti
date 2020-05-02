@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>ACME - Gestione Progetti - Amministrazione</title>
+    </head>
+
+    <body>
+        <h1>Gestione Progetti</h1>
+
+        <h2>Amministrazione</h2>
+
+        <h3>Dipartimento <%= dipartimento.nome %></h3>
+
+        <p><a href="/admin/dipartimenti">Dipartimenti</a></p>
+
+        <form action="/admin/dipartimenti/edit"  method="POST">
+            <input type="hidden" name="id" value="<%= dipartimento.id %>">
+            <input type="text" name="nome" value="<%= dipartimento.nome %>">
+            <input type="submit" value="Salva">
+        </form>  
+    </body>
+    
+</html>

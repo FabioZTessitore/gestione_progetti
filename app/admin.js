@@ -23,15 +23,21 @@ module.exports = function (db) {
         });
     });
 
-    router.get("/modifica/:id", function(req,res){
+    router.get("/dipartimenti/:id", function (req, res) {
         const id = req.params.id;
-        sql = "SELECT * FROM Dipartimenti WHERE nome = (?);";
-        db.all(sql, [id], function(err,rows){
-        const Dipartimento_selezionato = rows[0];
-        res.render("modifica", {dipartimenti : Dipartimento_selezionato});
+        sql = "SELECT * FROM Dipartimenti WHERE id=?;";
+        db.get(sql, [id], function (err, dipartimento) {
+            res.render("admin-dipartimento", {
+                dipartimento: dipartimento
+            });
         });
     });
-     
+
+    router.post("/dipartimenti/edit", function (req, res) {
+        console.log(req.body);
+        // creare qui il codice di salvataggio del dipartimento
+        res.redirect("/admin/dipartimenti");
+    })
 
     return router;
 };
