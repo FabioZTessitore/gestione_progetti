@@ -13,6 +13,8 @@
 
         <h2>Amministrazione</h2>
 
+        <h3>Dipartimenti</h3>
+
         <p><a href="/admin">Admin</a></p>
 
         <form action = "/admin/dipartimenti"  method="POST">
@@ -23,9 +25,7 @@
 
         <ul>
             <% dipartimenti.forEach(function (dipartimento) { %>
-                <li><%= dipartimento.nome %>
-                <a href="modifica/<%= dipartimento.id %>"> modifica </a>
-                </li>
+                <li><%= dipartimento.nome %> - <a href="/admin/dipartimenti/<%= dipartimento.id %>">modifica</a></li>
             <% }); %>
         </ul>
 
