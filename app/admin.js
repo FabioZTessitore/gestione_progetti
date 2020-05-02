@@ -34,9 +34,8 @@ module.exports = function (db) {
     });
 
     router.post("/dipartimenti/edit", function (req, res) {
-        console.log(req.body);
         const sql = "UPDATE Dipartimenti SET nome = ? WHERE id = ?;";
-        db.run(sql, [req.body.nome, req.body.id], function(){        
+        db.run(sql, [req.body.nome, req.body.id], function () {        
             res.redirect("/admin/dipartimenti");
         });
     });
