@@ -23,8 +23,11 @@
 
         <ul>
             <% dipartimenti.forEach(function (dipartimento) { %>
-                <li><%= dipartimento.nome %></li>
+                <li><%= dipartimento.nome %>
+                <a href="modifica/<%= dipartimento.id %>"> modifica </a>
+                </li>
             <% }); %>
         </ul>
+
     </body>
 </html>
