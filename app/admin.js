@@ -25,7 +25,7 @@ module.exports = function (db) {
 
     router.get("/dipartimenti/:id", function (req, res) {
         const id = req.params.id;
-        sql = "SELECT * FROM Dipartimenti WHERE id=?;";
+        sql = "SELECT * FROM Dipartimenti WHERE id = ?;";
         db.get(sql, [id], function (err, dipartimento) {
             res.render("admin-dipartimento", {
                 dipartimento: dipartimento
@@ -35,9 +35,11 @@ module.exports = function (db) {
 
     router.post("/dipartimenti/edit", function (req, res) {
         console.log(req.body);
-        // creare qui il codice di salvataggio del dipartimento
-        res.redirect("/admin/dipartimenti");
-    })
+        const sql = "UPDATE Dipartimenti SET nome = ? WHERE id = ?;";
+        db.run(sql, [req.body.nome, req.body.id], function(){        
+            res.redirect("/admin/dipartimenti");
+        });
+    });
 
     return router;
 };
