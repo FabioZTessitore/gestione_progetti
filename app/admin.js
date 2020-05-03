@@ -40,5 +40,20 @@ module.exports = function (db) {
         });
     });
 
+    router.get("/dipartimenti/:id/sedi", function(req, res){
+        console.log("esegui");
+        res.render("sedi");
+    });
+
+    router.post("/aggiungi", function(req, res){
+        const nome = req.body.nome;
+        const sql = "INSERT INTO Sedi (nome) VALUES (?);";
+        db.run(sql, [nome], function (err) {
+               res.redirect("/admin/dipartimenti");
+        });
+
+    });
+
+
     return router;
 };

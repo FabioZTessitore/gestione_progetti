@@ -10,3 +10,13 @@ CREATE TABLE Dipartimenti
 
 INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento 1");
 SELECT * FROM Dipartimenti;
+
+DROP TABLE IF EXISTS Sedi;
+CREATE TABLE Sedi
+(
+    id INTEGER PRIMARY KEY,
+    nome TEXT
+);
+
+INSERT INTO Sedi (nome) VALUES ("Sede 1");
+SELECT * FROM Sedi;
