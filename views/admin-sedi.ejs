@@ -13,16 +13,17 @@
 
         <h2>Amministrazione</h2>
 
+        <h3>Sedi</h3>
+
+        <!-- Invece di tornare ad /admin dobbiamo ritornare al dipartimento da cui proveniamo -->
+        <p>Torna al dipartimento con codice <%= dipId %></p>
         <p><a href="/admin">Admin</a></p>
 
-        <form action = "/aggiungi"  method="POST">
+        <form action="/sedi"  method="POST">
             <input type="text" name="nome" id="nome">
             <label for="nome">Nome Sede:</label>
             <input type="submit" value="Crea Sede">
         </form>
-
-        
-
     </body>
     
 </html>

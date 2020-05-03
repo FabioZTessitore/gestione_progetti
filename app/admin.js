@@ -40,16 +40,21 @@ module.exports = function (db) {
         });
     });
 
-    router.get("/dipartimenti/:id/sedi", function(req, res){
-        console.log("esegui");
-        res.render("sedi");
+    router.get("/dipartimenti/:id/sedi", function (req, res) {
+        const dipId = req.params.id;
+        // deve leggere la lista delle sedi dal db
+        res.render("admin-sedi", {
+            sedi: [],
+            dipId: dipId
+        });
     });
 
-    router.post("/aggiungi", function(req, res){
+    router.post("/sedi", function(req, res){
         const nome = req.body.nome;
         const sql = "INSERT INTO Sedi (nome) VALUES (?);";
         db.run(sql, [nome], function (err) {
-               res.redirect("/admin/dipartimenti");
+            // deve tornare al dipartimento, non alla lista dei dipartimenti
+            res.redirect("/admin/dipartimenti");
         });
 
     });
