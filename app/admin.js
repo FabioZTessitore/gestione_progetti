@@ -52,15 +52,14 @@ module.exports = function (db) {
     });
 
     router.post("/sedi", function(req, res){
-        console.log("prova");
         const nome = req.body.nome;
+        const dipId = req.body.dipId;
         const sql = "INSERT INTO Sedi (nome) VALUES (?);";
         db.run(sql, [nome], function (err) {
-            res.redirect("/admin/dipartimenti/:id/sedi");
+            res.redirect("/admin/dipartimenti/"+dipId+"/sedi");
         });
 
     });
-
 
     return router;
 };
