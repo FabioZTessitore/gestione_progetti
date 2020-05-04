@@ -20,3 +20,14 @@ CREATE TABLE Sedi
 
 INSERT INTO Sedi (nome) VALUES ("Sede 1");
 SELECT * FROM Sedi;
+
+DROP TABLE IF EXISTS Dipartimenti_Sedi;
+CREATE TABLE Dipartimenti_Sedi
+(
+    id Dipartimenti_Sedi PRIMARY KEY,
+    id_Dipartimenti INTEGER REFERENCES Dipartimenti(id),
+    id_Sedi INTEGER REFERENCES Sedi(id)
+);
+
+INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (1,1);
+SELECT D.nome, S.nome FROM ((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi);
