@@ -15,10 +15,10 @@
 
         <h3>Sedi</h3>
 
-        <p>Torna al dipartimento con codice <%= dipId %></p>
         <p><a href="/admin/dipartimenti/<%= dipId %>">Dipartimento</a></p>
 
         <form action="/admin/sedi"  method="POST">
+            <input type="hidden" name="dipId" value="<%= dipId %>">
             <input type="text" name="nome" id="nome">
             <label for="nome">Nome Sede:</label>
             <input type="submit" value="Crea Sede">

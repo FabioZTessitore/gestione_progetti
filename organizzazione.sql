@@ -9,6 +9,7 @@ CREATE TABLE Dipartimenti
 );
 
 INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento 1");
+INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento 2");
 SELECT * FROM Dipartimenti;
 
 DROP TABLE IF EXISTS Sedi;
@@ -19,6 +20,8 @@ CREATE TABLE Sedi
 );
 
 INSERT INTO Sedi (nome) VALUES ("Sede 1");
+INSERT INTO Sedi (nome) VALUES ("Sede 2");
+INSERT INTO Sedi (nome) VALUES ("Sede 3");
 SELECT * FROM Sedi;
 
 DROP TABLE IF EXISTS Dipartimenti_Sedi;
@@ -30,4 +33,6 @@ CREATE TABLE Dipartimenti_Sedi
 );
 
 INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (1,1);
+INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (1,2);
+INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (2,3);
 SELECT D.nome, S.nome FROM ((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi);
