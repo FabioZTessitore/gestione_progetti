@@ -30,12 +30,12 @@ module.exports = function (db) {
         sqlDipartimenti_Sedi = "SELECT D.nome, S.nome FROM ((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi) WHERE D.id = ?;";
         db.get(sqlDipartimento, [id], function (err, dipartimento) {
             db.all(sqlSedi, function(err, sedi) {
-                db.all(sqlDipartimenti_Sedi, function(err, Dipartimenti_Sedi) {
+                db.all(sqlDipartimenti_Sedi, [id], function(err, Dipartimenti_Sedi) {
+                    console.log(Dipartimenti_Sedi);
                 res.render("admin-dipartimento", {
                     dipartimento: dipartimento,
                     sedi : sedi,
-                    Dipartimenti_Sedi : Dipartimenti_Sedi,
-
+                    Dipartimenti_Sedi : Dipartimenti_Sedi
                    })
                 });
             });
