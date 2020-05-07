@@ -30,9 +30,13 @@ module.exports = function (db) {
     router.get("/dipartimenti/:id", function (req, res) {
         const id = req.params.id;
         sql = "SELECT * FROM Dipartimenti WHERE id = ?;";
+        sqlSedi = "SELECT * FROM Sedi;";
         db.get(sql, [id], function (err, dipartimento) {
+            db.all(sqlSedi, function(err, sedi) {
             res.render("admin-dipartimento", {
-                dipartimento: dipartimento
+                dipartimento: dipartimento,
+                sedi : sedi,
+                });
             });
         });
     });

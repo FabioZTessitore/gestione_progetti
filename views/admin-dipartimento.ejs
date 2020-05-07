@@ -23,6 +23,12 @@
             <input type="submit" value="Salva">
         </form>  
         
+        <ul>
+            <% sedi.forEach(function (sedi) { %>
+                <li><%= sedi.nome %> </li>
+            <% }); %>
+       </ul>
+       
         <p><a href="/admin/dipartimenti/<%= dipartimento.id %>/sedi">Amministra sedi</a></p>
 
     </body>
