@@ -42,6 +42,15 @@ module.exports = function (db) {
         });
     });
 
+        router.post("/dipartimenti/sedi", function(req,res) {
+            sql = "INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (?,?);";
+            db.all(sql, [req.body.dipartimenti.id], [req.body.sedi.id] function(err,rows){
+                ;
+            });
+            
+        });
+        
+
     router.post("/dipartimenti/edit", function (req, res) {
         const sql = "UPDATE Dipartimenti SET nome = ? WHERE id = ?;";
         db.run(sql, [req.body.nome, req.body.id], function () {        
