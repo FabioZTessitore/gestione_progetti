@@ -7,11 +7,19 @@ router.use( bodyParser.urlencoded({ extended: false }) );
 module.exports = function (db) {
     
     router.get("/dipartimenti", function (req, res) {
-        const sql = "SELECT * FROM Dipartimenti;";
-        db.all(sql, function (err, rows) {
+        const sqlDipartimenti = "SELECT * FROM Dipartimenti;";
+        const sqlSedi = "SELECT * FROM Sedi;";
+        db.all(sqlDipartimenti,function (err, rows1) {
             res.render("admin-dipartimenti", {
-                dipartimenti: rows
+                dipartimenti: rows1,
             });
+
+        db.all(sqlSedi, function(err1, rows2) {   
+            res.render("admin-dipartimenti", {
+                    sedi: rows2,
+            });
+        }); 
+
         });
     });
 

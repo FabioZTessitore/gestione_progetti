@@ -27,6 +27,13 @@
             <% dipartimenti.forEach(function (dipartimento) { %>
                 <li><%= dipartimento.nome %> - <a href="/admin/dipartimenti/<%= dipartimento.id %>">modifica</a></li>
             <% }); %>
+       </ul>
+
+        <ul>
+            <% sedi.forEach(function (sedi) { %>
+                <li><%= sedi.nome %> <li>
+
+                <% }); %>
         </ul>
 
     </body>
