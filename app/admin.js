@@ -8,13 +8,9 @@ module.exports = function (db) {
     
     router.get("/dipartimenti", function (req, res) {
         const sqlDipartimenti = "SELECT * FROM Dipartimenti;";
-        const sqlSedi = "SELECT * FROM Sedi;";
         db.all(sqlDipartimenti,function (err, dipartimenti) {
-            db.all(sqlSedi, function(err, sedi) {   
-                res.render("admin-dipartimenti", {
-                    dipartimenti: dipartimenti,
-                    sedi: sedi,
-                });
+            res.render("admin-dipartimenti", {
+                dipartimenti: dipartimenti
             });
         });
     });
@@ -29,13 +25,13 @@ module.exports = function (db) {
 
     router.get("/dipartimenti/:id", function (req, res) {
         const id = req.params.id;
-        sql = "SELECT * FROM Dipartimenti WHERE id = ?;";
+        sqlDipartimento = "SELECT * FROM Dipartimenti WHERE id = ?;";
         sqlSedi = "SELECT * FROM Sedi;";
-        db.get(sql, [id], function (err, dipartimento) {
+        db.get(sqlDipartimento, [id], function (err, dipartimento) {
             db.all(sqlSedi, function(err, sedi) {
-            res.render("admin-dipartimento", {
-                dipartimento: dipartimento,
-                sedi : sedi,
+                res.render("admin-dipartimento", {
+                    dipartimento: dipartimento,
+                    sedi : sedi,
                 });
             });
         });
