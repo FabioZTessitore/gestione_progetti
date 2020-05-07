@@ -34,8 +34,8 @@
         </form> 
 
         <ul>
-            <% Dipartimenti_Sedi.forEach(function (Dipartimenti_Sedi) { %>
-                <li><%= Dipartimenti.nome %> - <%= Sedi.nome %> </li>
+            <% Dipartimenti_Sedi.forEach(function (sede) { %>
+                <li><%= sede.nome %></li>
             <% }); %>
        </ul>
                
