@@ -31,7 +31,13 @@
             </select>
             <label for="sede">Scegli sede:</label>
             <input type="submit" value="Aggiungi sede">
-        </form>
+        </form> 
+
+        <ul>
+            <% Dipartimenti_Sedi.forEach(function (Dipartimenti_Sedi) { %>
+                <li><%= Dipartimenti.nome %> - <%= Sedi.nome %> </li>
+            <% }); %>
+       </ul>
                
         <p><a href="/admin/dipartimenti/<%= dipartimento.id %>/sedi">Amministra sedi</a></p>
 

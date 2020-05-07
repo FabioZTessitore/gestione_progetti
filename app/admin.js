@@ -27,11 +27,16 @@ module.exports = function (db) {
         const id = req.params.id;
         sqlDipartimento = "SELECT * FROM Dipartimenti WHERE id = ?;";
         sqlSedi = "SELECT * FROM Sedi;";
+        sqlDipartimenti_Sedi = "SELECT D.nome, S.nome FROM ((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi) WHERE D.id = ?;";
         db.get(sqlDipartimento, [id], function (err, dipartimento) {
             db.all(sqlSedi, function(err, sedi) {
+                db.all(sqlDipartimenti_Sedi, function(err, Dipartimenti_Sedi) {
                 res.render("admin-dipartimento", {
                     dipartimento: dipartimento,
                     sedi : sedi,
+                    Dipartimenti_Sedi : Dipartimenti_Sedi,
+
+                   })
                 });
             });
         });
