@@ -23,10 +23,11 @@
             <input type="submit" value="Salva">
         </form>  
         
-        <form action="#" method="POST">
+        <form action="/admin/dipartimenti/sedi" method="POST">
+            <input type="hidden" name="dipId" value="<%= dipartimento.id %>">
             <select name="sede" id="sede">
-                <% sedi.forEach(function (sedi) { %>
-                    <option value="<%= sedi.id %>"><%= sedi.nome %></option>
+                <% sedi.forEach(function (sede) { %>
+                    <option value="<%= sede.id %>"><%= sede.nome %></option>
                 <% }); %>
             </select>
             <label for="sede">Scegli sede:</label>
