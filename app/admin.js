@@ -31,25 +31,22 @@ module.exports = function (db) {
         db.get(sqlDipartimento, [id], function (err, dipartimento) {
             db.all(sqlSedi, function(err, sedi) {
                 db.all(sqlDipartimenti_Sedi, [id], function(err, Dipartimenti_Sedi) {
-                    console.log(Dipartimenti_Sedi);
-                res.render("admin-dipartimento", {
-                    dipartimento: dipartimento,
-                    sedi : sedi,
-                    Dipartimenti_Sedi : Dipartimenti_Sedi
-                   })
+                    res.render("admin-dipartimento", {
+                        dipartimento: dipartimento,
+                        sedi : sedi,
+                        Dipartimenti_Sedi : Dipartimenti_Sedi
+                   });
                 });
             });
         });
     });
 
-        router.post("/dipartimenti/sedi", function(req,res) {
-            sql = "INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (?,?);";
-            db.all(sql, [req.body.dipartimenti.id], [req.body.sedi.id] function(err,rows){
-                ;
-            });
-            
+    router.post("/dipartimenti/sedi", function (req, res) {
+        sql = "INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (?,?);";
+        db.run(sql, [req.body.dipId, req.body.sede], function (err) {
+            res.redirect("/admin/dipartimenti/"+req.body.dipId);
         });
-        
+    });
 
     router.post("/dipartimenti/edit", function (req, res) {
         const sql = "UPDATE Dipartimenti SET nome = ? WHERE id = ?;";

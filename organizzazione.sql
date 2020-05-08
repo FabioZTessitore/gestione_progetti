@@ -27,7 +27,6 @@ SELECT * FROM Sedi;
 DROP TABLE IF EXISTS Dipartimenti_Sedi;
 CREATE TABLE Dipartimenti_Sedi
 (
-    id Dipartimenti_Sedi PRIMARY KEY,
     id_Dipartimenti INTEGER REFERENCES Dipartimenti(id),
     id_Sedi INTEGER REFERENCES Sedi(id)
 );
