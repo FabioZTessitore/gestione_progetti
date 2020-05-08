@@ -49,7 +49,6 @@ module.exports = function (db) {
     });
 
     router.post("/dipartimenti/edit", function (req, res) {
-        const sql = "UPDATE Dipartimenti SET nome = ? WHERE id = ?;";
         db.run(sql, [req.body.nome, req.body.id], function () {        
             res.redirect("/admin/dipartimenti");
         });
@@ -75,6 +74,26 @@ module.exports = function (db) {
         });
 
     });
+
+    router.get("/sedi/:id", function(req, res) {
+        const sedId = req.params.id;
+        sqlSedi = "SELECT * FROM Sedi WHERE id = ?;";
+        db.run(sqlSedi, [sedId], function(err) {
+            res.render("admin-sedi_modifica", {
+                sedi : sedi,
+            });
+
+        });
+
+    });
+
+    router.post("/sedi", function (req, res) {
+        const sql = "UPDATE Indirizzo SET indirizzo = ?, citta = ?, cap = ? WHERE id_Sedi = ?;";
+        db.run(sql, [req.body.indirizzo req.body.citta req.body.cap req.body.id_Sedi], function (err) {        
+            res.redirect("/admin/dipartimenti/sedi");
+        });
+    });
+
 
     return router;
 };

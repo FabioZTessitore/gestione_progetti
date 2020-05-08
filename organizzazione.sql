@@ -35,3 +35,17 @@ INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (1,1);
 INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (1,2);
 INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (2,3);
 SELECT D.nome, S.nome FROM ((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi) WHERE D.id = 1;
+
+DROP TABLE IF EXISTS Indirizzo;
+CREATE TABLE Indirizzo
+(
+    id INTEGER PRIMARY KEY,
+    citta TEXT,
+    indirizzo TEXT,
+    cap TEXT,
+    id_sedi INTEGER REFERENCES Sedi(id)
+);
+
+INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES ("Cardito", "Via Napoli 5", "80024", 1);
+SELECT * FROM Indirizzo;
+SELECT S.nome, I.indirizzo FROM (Indirizzo I INNER JOIN Sedi S ON I.id_sedi = S.id);

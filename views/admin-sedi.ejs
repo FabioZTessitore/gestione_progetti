@@ -26,7 +26,7 @@
 
         <ul>
             <% sedi.forEach(function (sedi) { %>
-                <li><%= sedi.nome %> 
+                <li><%= sedi.nome %> - <a href="/admin/dipartimenti/sedi/<%= sedi.id %>"> modifica</a></li>
             <% }); %>
         </ul>
 
