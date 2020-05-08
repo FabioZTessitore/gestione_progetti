@@ -27,7 +27,7 @@ module.exports = function (db) {
         const id = req.params.id;
         sqlDipartimento = "SELECT * FROM Dipartimenti WHERE id = ?;";
         sqlSedi = "SELECT * FROM Sedi;";
-        sqlDipartimenti_Sedi = "SELECT D.nome, S.nome FROM ((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi) WHERE D.id = ?;";
+        sqlDipartimenti_Sedi = "SELECT D.nome, S.nome I.indirizzo FROM (((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi) INNER JOIN Indirizzo I WHERE D.id = ?;";
         db.get(sqlDipartimento, [id], function (err, dipartimento) {
             db.all(sqlSedi, function(err, sedi) {
                 db.all(sqlDipartimenti_Sedi, [id], function(err, Dipartimenti_Sedi) {
@@ -75,7 +75,7 @@ module.exports = function (db) {
 
     });
 
-    router.get("/sedi/:id", function(req, res) {
+    /*router.get("/sedi/:id", function(req, res) {
         const sedId = req.params.id;
         sqlSedi = "SELECT * FROM Sedi WHERE id = ?;";
         db.run(sqlSedi, [sedId], function(err) {
@@ -92,7 +92,7 @@ module.exports = function (db) {
         db.run(sql, [req.body.indirizzo req.body.citta req.body.cap req.body.id_Sedi], function (err) {        
             res.redirect("/admin/dipartimenti/sedi");
         });
-    });
+    });*/
 
 
     return router;
