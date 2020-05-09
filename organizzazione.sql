@@ -34,6 +34,9 @@ CREATE TABLE Dipartimenti_Sedi
 INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (1,1);
 INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (1,2);
 INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (2,3);
+INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (1,3);
+INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (2,1);
+
 SELECT D.nome, S.nome FROM ((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi) WHERE D.id = 1;
 
 DROP TABLE IF EXISTS Indirizzo;
@@ -47,5 +50,10 @@ CREATE TABLE Indirizzo
 );
 
 INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES ("Cardito", "Via Napoli 5", "80024", 1);
+INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES ("non so", "Via non so", "800 non so", 3);
+INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES ("non lo so", "Via Gattini", "80024 Gatto", 2);
+
 SELECT * FROM Indirizzo;
 SELECT S.nome, I.indirizzo FROM (Indirizzo I INNER JOIN Sedi S ON I.id_sedi = S.id);
+SELECT D.nome, S.nome, I.indirizzo FROM (((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi) INNER JOIN Indirizzo I ON I.id_sedi = S.id) WHERE D.id = 1;
+SELECT S.nome, I.indirizzo, I.cap, I.citta FROM (Sedi S INNER JOIN Indirizzo I ON S.id = I.id_sedi);

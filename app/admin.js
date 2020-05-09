@@ -27,7 +27,7 @@ module.exports = function (db) {
         const id = req.params.id;
         sqlDipartimento = "SELECT * FROM Dipartimenti WHERE id = ?;";
         sqlSedi = "SELECT * FROM Sedi;";
-        sqlDipartimenti_Sedi = "SELECT D.nome, S.nome, I.indirizzo FROM (((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi) INNER JOIN Indirizzo I ON I.id_sedi = S.id) WHERE D.id = ?;";
+        sqlDipartimenti_Sedi = "SELECT D.nome, S.nome, I.indirizzo FROM (((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi) INNER JOIN Indirizzo I ON I.id_Sedi = S.id) WHERE D.id = ?;";
         db.get(sqlDipartimento, [id], function (err, dipartimento) {
             db.all(sqlSedi, function(err, sedi) {
                 db.all(sqlDipartimenti_Sedi, [id], function(err, Dipartimenti_Sedi) {
@@ -58,11 +58,11 @@ module.exports = function (db) {
 
     router.get("/dipartimenti/:id/sedi", function (req, res) {
         const dipId = req.params.id;
-        const sql = "SELECT nome FROM Sedi;";
+        const sql = "SELECT S.nome, I.indirizzo, I.cap, I.citta FROM (Sedi S INNER JOIN Indirizzo I ON S.id = I.id_sedi);";
         db.all(sql, function(err, rows){
             res.render("admin-sedi", {
                 sedi: rows,
-                dipId: dipId
+                dipId: dipId,
             });
         });
     });
@@ -70,9 +70,14 @@ module.exports = function (db) {
     router.post("/sedi", function(req, res){
         const nome = req.body.nome;
         const dipId = req.body.dipId;
-        const sql = "INSERT INTO Sedi (nome) VALUES (?);";
-        db.run(sql, [nome], function (err) {
-            res.redirect("/admin/dipartimenti/"+dipId+"/sedi");
+        const sqlSedi = "INSERT INTO Sedi (nome) VALUES (?);";
+        const sqlIndirizzo = "INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES (?, ?, ?, ?);";
+        db.run(sqlSedi, [nome], function (err) {
+            db.run(sqlIndirizzo, [req.body.citta, req.body.indirizzo, req.body.cap, req.body.id_sedi], function(err){
+                res.redirect("/admin/dipartimenti/"+dipId+"/sedi");
+                console.log(req.body.cap);
+
+            })
         });
 
     });

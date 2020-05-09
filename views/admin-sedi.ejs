@@ -19,14 +19,27 @@
 
         <form action="/admin/sedi"  method="POST">
             <input type="hidden" name="dipId" value="<%= dipId %>">
-            <input type="text" name="nome" id="nome">
+            <input type="text" name="nome" id="nome"> 
             <label for="nome">Nome Sede:</label>
+            <br>
+            <input type="text" name="indirizzo" id="indirizzo">
+            <label for="nome">Nome Citta:</label>
+            <br>
+            <input type="text" name="cap" id="cap">
+            <label for="nome">Nome indirizzo:</label>
+            <br>
+            <input type="text" name="citta" id="citta">
+            <label for="nome">Nome cap:</label>
+            <br>
+            <input type="text" name="sede" id="sede">
+            <label for="nome">Nome necessario:</label>
+            <br>
             <input type="submit" value="Crea Sede">
         </form>
 
         <ul>
             <% sedi.forEach(function (sedi) { %>
-                <li><%= sedi.nome %> </li>
+                <li><%= sedi.nome %> - <%= sedi.indirizzo %> - <%= sedi.cap %> - <%= sedi.citta %> </li>
             <% }); %>
         </ul>
 
