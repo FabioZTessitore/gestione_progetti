@@ -71,16 +71,18 @@ module.exports = function (db) {
         const nome = req.body.nome;
         const dipId = req.body.dipId;
         const sqlSedi = "INSERT INTO Sedi (nome) VALUES (?);";
+        const sqlid = "SELECT id FROM Sedi WHERE nome = ?;" ;
         const sqlIndirizzo = "INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES (?, ?, ?, ?);";
         db.run(sqlSedi, [nome], function (err) {
-            db.run(sqlIndirizzo, [req.body.citta, req.body.indirizzo, req.body.cap, req.body.id_sedi], function(err){
-                res.redirect("/admin/dipartimenti/"+dipId+"/sedi");
-                console.log(req.body.cap);
+            db.get(sqlId, [req.params.id], function (err, id) {
+                db.run(sqlIndirizzo, [req.body.citta, req.body.indirizzo, req.body.cap, req.body.id_sedi], function(err){
+                    res.redirect("/admin/dipartimenti/"+dipId+"/sedi");
+                    console.log(id);
 
-            })
+            });
         });
-
     });
+});
 
     /*router.get("/sedi/:id", function(req, res) {
         const sedId = req.params.id;
