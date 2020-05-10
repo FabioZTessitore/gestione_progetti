@@ -8,8 +8,8 @@ CREATE TABLE Dipartimenti
     nome TEXT
 );
 
-INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento 1");
-INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento 2");
+INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento B");
+INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento A");
 SELECT * FROM Dipartimenti;
 select '';
 
@@ -20,9 +20,9 @@ CREATE TABLE Sedi
     nome TEXT
 );
 
-INSERT INTO Sedi (nome) VALUES ("Sede 1");
-INSERT INTO Sedi (nome) VALUES ("Sede 2");
-INSERT INTO Sedi (nome) VALUES ("Sede 3");
+INSERT INTO Sedi (nome) VALUES ("Sede B");
+INSERT INTO Sedi (nome) VALUES ("Sede A");
+INSERT INTO Sedi (nome) VALUES ("Sede C");
 SELECT * FROM Sedi;
 select '';
 
