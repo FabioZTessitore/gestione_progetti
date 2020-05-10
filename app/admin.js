@@ -7,7 +7,7 @@ router.use( bodyParser.urlencoded({ extended: false }) );
 module.exports = function (db) {
     
     router.get("/dipartimenti", function (req, res) {
-        const sqlDipartimenti = "SELECT * FROM Dipartimenti;";
+        const sqlDipartimenti = "SELECT * FROM Dipartimenti ORDER BY nome;";
         db.all(sqlDipartimenti,function (err, dipartimenti) {
             res.render("admin-dipartimenti", {
                 dipartimenti: dipartimenti
@@ -27,7 +27,7 @@ module.exports = function (db) {
         const id = req.params.id;
         sqlDipartimento = "SELECT * FROM Dipartimenti WHERE id = ?;";
         sqlSedi = "SELECT * FROM Sedi;";
-        sqlDipartimenti_Sedi = "SELECT D.nome, S.nome, I.indirizzo, I.citta FROM (((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi) INNER JOIN Indirizzo I ON I.id_Sedi = S.id) WHERE D.id = ?;";
+        sqlDipartimenti_Sedi = "SELECT D.nome, S.nome, I.indirizzo, I.citta FROM (((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi) INNER JOIN Indirizzo I ON I.id_Sedi = S.id) WHERE D.id = ? ORDER BY S.nome;";
         db.get(sqlDipartimento, [id], function (err, dipartimento) {
             db.all(sqlSedi, function(err, sedi) {
                 db.all(sqlDipartimenti_Sedi, [id], function(err, Dipartimenti_Sedi) {
@@ -56,7 +56,7 @@ module.exports = function (db) {
 
     router.get("/dipartimenti/:id/sedi", function (req, res) {
         const dipId = req.params.id;
-        const sql = "SELECT S.nome, I.indirizzo, I.cap, I.citta FROM (Sedi S INNER JOIN Indirizzo I ON S.id = I.id_sedi);";
+        const sql = "SELECT S.nome, I.indirizzo, I.cap, I.citta FROM (Sedi S INNER JOIN Indirizzo I ON S.id = I.id_sedi) ORDER BY S.nome;";
         db.all(sql, function(err, rows){
             res.render("admin-sedi", {
                 sedi: rows,
