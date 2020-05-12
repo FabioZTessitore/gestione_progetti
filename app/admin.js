@@ -38,7 +38,6 @@ module.exports = function (db) {
         const cognome = req.body.cognome;
         const sql = "INSERT INTO Impiegati (cognome, nome) VALUES (?, ?);";
         db.run(sql, [cognome, nome], function (err) {
-               console.log(nome);
                res.redirect("/admin/impiegati");
         });
     });
@@ -61,7 +60,7 @@ module.exports = function (db) {
         });
     });
 
-    router.get("/impiegato/:id", function (req, res) {
+    router.get("/impiegati/:id", function (req, res) {
         const id = req.params.id;
         sql = "SELECT * FROM Impiegati WHERE id = ?;";
         db.get(sql, [id], function (err, impiegato) {
@@ -86,10 +85,9 @@ module.exports = function (db) {
         });
     });
 
-    router.post("/impiegato/edit", function (req, res) {
+    router.post("/impiegati/edit", function (req, res) {
         const sql = "UPDATE Impiegati SET cognome = ?, nome = ? WHERE id = ?;";
-        db.run(sql, [req.body.cognome, req.body.nome, req.body.id], function () {    
-            console.log(req.body.cognome);    
+        db.run(sql, [req.body.cognome, req.body.nome, req.body.id], function (err) {
             res.redirect("/admin/impiegati");
         });
     });

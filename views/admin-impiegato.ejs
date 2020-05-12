@@ -15,15 +15,15 @@
 
         <h3>Impiegato</h3>
 
-        <p><a href="/admin">Admin</a></p>
+        <p><a href="/admin/impiegati">Impiegati</a></p>
 
-        <form action = "/admin/impiegato/edit"  method="POST">
-            <input type="text" name="cognome" id="nome">
-            <label for="cognome"> Cognome : Impiegato</label> <br>
+        <form action="/admin/impiegati/edit"  method="POST">
+            <!-- qui bisogna inserire i valori dell'impiegato che si vuole modificare e l'id da inviare al server -->
+            <input type="text" name="cognome" id="cognome">
+            <label for="cognome">Cognome:</label>
             <input type="text" name="nome" id="nome">
-            <label for="nome"> nome : Impiegato</label> <br>
+            <label for="nome">Nome:</label>
             <input type="submit" value="Salva">
         </form>
-
     </body>
 </html>

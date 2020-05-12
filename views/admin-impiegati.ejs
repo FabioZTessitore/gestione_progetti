@@ -18,16 +18,16 @@
         <p><a href="/admin">Admin</a></p>
 
         <form action = "/admin/impiegati"  method="POST">
-            <input type="text" name="cognome" id="nome">
-            <label for="nome">Cognome Impiegato:</label> <br>
+            <input type="text" name="cognome" id="cognome">
+            <label for="cognome">Cognome:</label>
             <input type="text" name="nome" id="nome">
-            <label for="nome">Nome Impiegato:</label> <br>
+            <label for="nome">Nome:</label>
             <input type="submit" value="Crea impiegato">
         </form>
 
         <ul>
             <% impiegati.forEach(function (impiegato) { %>
-                <li> <%= impiegato.cognome %> <%= impiegato.nome %> - <a href="/admin/impiegato/<%= impiegato.id %>">modifica</a></li>
+                <li> <%= impiegato.cognome %> <%= impiegato.nome %> - <a href="/admin/impiegati/<%= impiegato.id %>">modifica</a></li>
             <% }); %>
        </ul>
     </body>
