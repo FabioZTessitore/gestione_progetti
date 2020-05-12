@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>ACME - Gestione Progetti - Amministrazione</title>
+    </head>
+
+    <body>
+        <h1>Gestione Progetti</h1>
+
+        <h2>Amministrazione</h2>
+
+        <h3>Impiegati</h3>
+
+        <p><a href="/admin">Admin</a></p>
+
+        <form action = "/admin/impiegati"  method="POST">
+            <input type="text" name="cognome" id="nome">
+            <label for="nome">Cognome Impiegato:</label> <br>
+            <input type="text" name="nome" id="nome">
+            <label for="nome">Nome Impiegato:</label> <br>
+            <input type="submit" value="Crea impiegato">
+        </form>
+
+        <ul>
+            <% impiegati.forEach(function (impiegato) { %>
+                <li> <%= impiegato.cognome %> <%= impiegato.nome %> - <a href="/admin/impiegato/<%= impiegato.id %>">modifica</a></li>
+            <% }); %>
+       </ul>
+    </body>
+</html>

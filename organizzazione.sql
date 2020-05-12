@@ -51,7 +51,6 @@ CREATE TABLE Indirizzo
     cap TEXT,
     id_sedi INTEGER REFERENCES Sedi(id)
 );
-
 INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES ("Cardito", "Via Napoli 5", "80024", 1);
 INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES ("non lo so", "Via Gattini", "80024 Gatto", 2);
 INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES ("non so", "Via non so", "800 non so", 3);
@@ -64,3 +63,23 @@ select '';
 
 SELECT D.nome, S.nome, I.indirizzo, I.citta FROM (((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi) INNER JOIN Indirizzo I ON I.id_sedi = S.id) WHERE D.id = 1;
 select '';
+
+DROP TABLE IF EXISTS Impiegati;
+CREATE TABLE Impiegati
+(
+    id INTEGER PRIMARY KEY,
+    cognome TEXT,
+    nome TEXT
+);
+
+INSERT INTO Impiegati (cognome, nome) VALUES ("Legnante", "Antonio");
+INSERT INTO Impiegati (cognome, nome) VALUES ("Celardo", "Carlo");
+INSERT INTO Impiegati (cognome, nome) VALUES ("Sorgiacomo", "Pasquale");
+
+SELECT * FROM Impiegati;
+
+UPDATE Dipartimenti SET nome = "Dipartimento I" WHERE id = 1;
+SELECT * FROM Dipartimenti;
+
+UPDATE Impiegati SET nome = "Michele", cognome = "Miele" WHERE id = 3;
+SELECT * FROM Impiegati;

@@ -15,11 +15,31 @@ module.exports = function (db) {
         });
     });
 
+    router.get("/impiegati", function(req, res) {
+        const sqlImpiegato = "SELECT * FROM Impiegati ORDER BY cognome, nome;";
+        db.all(sqlImpiegato, function(err, impiegati) {
+            res.render("admin-impiegati", {
+                impiegati: impiegati
+            });
+        });
+    });
+
     router.post("/dipartimenti", function (req, res) {
         const nome = req.body.nome;
         const sql = "INSERT INTO Dipartimenti (nome) VALUES (?);";
         db.run(sql, [nome], function (err) {
                res.redirect("/admin/dipartimenti");
+        });
+    });
+
+
+    router.post("/impiegati", function (req, res) {
+        const nome = req.body.nome;
+        const cognome = req.body.cognome;
+        const sql = "INSERT INTO Impiegati (cognome, nome) VALUES (?, ?);";
+        db.run(sql, [cognome, nome], function (err) {
+               console.log(nome);
+               res.redirect("/admin/impiegati");
         });
     });
 
@@ -41,6 +61,17 @@ module.exports = function (db) {
         });
     });
 
+    router.get("/impiegato/:id", function (req, res) {
+        const id = req.params.id;
+        sql = "SELECT * FROM Impiegati WHERE id = ?;";
+        db.get(sql, [id], function (err, impiegato) {
+                    res.render("admin-impiegato", {
+                        impiegato: impiegato,
+            });
+        });
+    });
+     
+
     router.post("/dipartimenti/sedi", function (req, res) {
         sql = "INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (?,?);";
         db.run(sql, [req.body.dipId, req.body.sede], function (err) {
@@ -49,10 +80,20 @@ module.exports = function (db) {
     });
 
     router.post("/dipartimenti/edit", function (req, res) {
+        const sql = "UPDATE Dipartimenti SET nome = ? WHERE id = ?;";
         db.run(sql, [req.body.nome, req.body.id], function () {        
             res.redirect("/admin/dipartimenti");
         });
     });
+
+    router.post("/impiegato/edit", function (req, res) {
+        const sql = "UPDATE Impiegati SET cognome = ?, nome = ? WHERE id = ?;";
+        db.run(sql, [req.body.cognome, req.body.nome, req.body.id], function () {    
+            console.log(req.body.cognome);    
+            res.redirect("/admin/impiegati");
+        });
+    });
+
 
     router.get("/dipartimenti/:id/sedi", function (req, res) {
         const dipId = req.params.id;
