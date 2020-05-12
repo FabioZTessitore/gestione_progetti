@@ -9,5 +9,5 @@
    1. ~~Link a pagina di ammistrazione sedi~~
    2. ~~Pagina di amministrazione sedi permette di vedere le sedi inserite, creare una nuova sede e tornare al dipartimento (tutti i passaggi devono portare l'id del dipartimento da cui siamo partiti)~~
    3. ~~Il dipartimento seleziona la sede e salva (anche più di una)~~
-5. Pagina degli impiegati (GET /impiegati), crea nuovo impiegato
+5. ~~Pagina degli impiegati (GET /impiegati), crea nuovo impiegato~~
 6. Pagina del singolo impiegato (GET /impiegati/:id)
