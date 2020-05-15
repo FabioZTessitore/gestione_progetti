@@ -62,13 +62,27 @@ module.exports = function (db) {
 
     router.get("/impiegati/:id", function (req, res) {
         const id = req.params.id;
-        sql = "SELECT * FROM Impiegati WHERE id = ?;";
-        db.get(sql, [id], function (err, impiegato) {
+        sqlImpiegato = "SELECT * FROM (Impiegati I LEFT JOIN Dipartimenti D ON I.id_dipartimento = D.id) WHERE I.id = ?;";
+        sqlDipartimento = "SELECT * FROM Dipartimenti WHERE id = ?";
+        db.get(sqlImpiegato, [id], function (err, impiegato) {
+            db.all(sqlDipartimento, function(err, dipartimenti) {
                     res.render("admin-impiegato", {
                         impiegato: impiegato,
+                        dipartimenti: dipartimenti,
+                   });
             });
-        });
+       });
     });
+
+
+
+router.post("/impiegato/dipartimento", function (req, res) {
+    sql = "INSERT INTO Impiegati (id_Dipartimento) VALUES (?);";
+    db.run(sql, [req.body.ImpId, req.body.dipartimento], function (err) {
+        res.redirect("/admin/dipartimenti/"+req.body.ImpId);
+    });
+});
+
      
 
     router.post("/dipartimenti/sedi", function (req, res) {
@@ -116,26 +130,6 @@ module.exports = function (db) {
             });
         });
     });
-
-    /*router.get("/sedi/:id", function(req, res) {
-        const sedId = req.params.id;
-        sqlSedi = "SELECT * FROM Sedi WHERE id = ?;";
-        db.run(sqlSedi, [sedId], function(err) {
-            res.render("admin-sedi_modifica", {
-                sedi : sedi,
-            });
-
-        });
-
-    });
-
-    router.post("/sedi", function (req, res) {
-        const sql = "UPDATE Indirizzo SET indirizzo = ?, citta = ?, cap = ? WHERE id_Sedi = ?;";
-        db.run(sql, [req.body.indirizzo req.body.citta req.body.cap req.body.id_Sedi], function (err) {        
-            res.redirect("/admin/dipartimenti/sedi");
-        });
-    });*/
-
 
     return router;
 };

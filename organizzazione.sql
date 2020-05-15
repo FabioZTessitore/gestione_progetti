@@ -69,17 +69,14 @@ CREATE TABLE Impiegati
 (
     id INTEGER PRIMARY KEY,
     cognome TEXT,
-    nome TEXT
+    nome TEXT,
+    id_dipartimento INTEGER REFERENCES Dipartimenti(id)
 );
 
-INSERT INTO Impiegati (cognome, nome) VALUES ("Legnante", "Antonio");
-INSERT INTO Impiegati (cognome, nome) VALUES ("Celardo", "Carlo");
-INSERT INTO Impiegati (cognome, nome) VALUES ("Sorgiacomo", "Pasquale");
+INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Legnante", "Antonio", 1);
+INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Celardo", "Carlo", 1);
+INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Sorgiacomo", "Pasquale", 2);
 
 SELECT * FROM Impiegati;
 
-UPDATE Dipartimenti SET nome = "Dipartimento I" WHERE id = 1;
-SELECT * FROM Dipartimenti;
-
-UPDATE Impiegati SET nome = "Michele", cognome = "Miele" WHERE id = 3;
-SELECT * FROM Impiegati;
+SELECT I.cognome, D.nome FROM (Impiegati I INNER JOIN Dipartimenti D ON I.id_Dipartimento = D.id);

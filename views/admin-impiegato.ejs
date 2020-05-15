@@ -18,12 +18,23 @@
         <p><a href="/admin/impiegati">Impiegati</a></p>
 
         <form action="/admin/impiegati/edit"  method="POST">
-            <!-- qui bisogna inserire i valori dell'impiegato che si vuole modificare e l'id da inviare al server -->
-            <input type="text" name="cognome" id="cognome">
+            <input type="hidden" name="id" value="<%= impiegato.id %>">
+            <input type="text" name="cognome" value="<%= impiegato.cognome %>">
             <label for="cognome">Cognome:</label>
-            <input type="text" name="nome" id="nome">
+            <input type="text" name="nome" value="<%= impiegato.nome %>">
             <label for="nome">Nome:</label>
             <input type="submit" value="Salva">
         </form>
+
+        <form action="/admin/impiegato/dipartimento" method="POST">
+            <input type="hidden" name="id" value="<%= impiegato.id %>">
+            <select name="dipartimento" id="dipartimento">
+                <% dipartimenti.forEach(function (dipartimento) { %>
+                    <option value="<%= dipartimento.id %>"><%= dipartimento.nome %></option>
+                <% }); %>
+            </select>
+            <label for="dipartimento">Scegli dipartimento:</label>
+            <input type="submit" value="Aggiungi dipartimento">
+        </form> 
     </body>
 </html>
