@@ -78,5 +78,9 @@ INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Celardo", "Carlo
 INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Sorgiacomo", "Pasquale", 2);
 
 SELECT * FROM Impiegati;
+select '';
 
 SELECT I.cognome, D.nome FROM (Impiegati I INNER JOIN Dipartimenti D ON I.id_Dipartimento = D.id);
+select '';
+SELECT I.id Iid, I.cognome Icognome, I.nome Inome, D.nome Dnome, D.id Did FROM Impiegati I LEFT JOIN Dipartimenti D ON I.id_dipartimento = D.id WHERE I.id = 1;
+select '';

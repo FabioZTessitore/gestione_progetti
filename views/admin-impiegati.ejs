@@ -27,7 +27,7 @@
 
         <ul>
             <% impiegati.forEach(function (impiegato) { %>
-                <li> <%= impiegato.cognome %> <%= impiegato.nome %> - <a href="/admin/impiegati/<%= impiegato.id %>">modifica</a></li>
+                <li><%= impiegato.cognome %> <%= impiegato.nome %> - <a href="/admin/impiegati/<%= impiegato.id %>">modifica</a></li>
             <% }); %>
        </ul>
     </body>

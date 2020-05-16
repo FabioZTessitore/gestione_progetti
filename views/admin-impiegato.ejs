@@ -18,23 +18,25 @@
         <p><a href="/admin/impiegati">Impiegati</a></p>
 
         <form action="/admin/impiegati/edit"  method="POST">
-            <input type="hidden" name="id" value="<%= impiegato.id %>">
-            <input type="text" name="cognome" value="<%= impiegato.cognome %>">
+            <input type="hidden" name="id" value="<%= impiegato.Iid %>">
+            <input type="text" name="cognome" id="cognome" value="<%= impiegato.Icognome %>">
             <label for="cognome">Cognome:</label>
-            <input type="text" name="nome" value="<%= impiegato.nome %>">
+            <input type="text" name="nome" id="nome" value="<%= impiegato.Inome %>">
             <label for="nome">Nome:</label>
             <input type="submit" value="Salva">
         </form>
 
+        <p>Dipartimento Attuale: <%= impiegato.Dnome %> (<%= impiegato.Did %>)</p>
+
         <form action="/admin/impiegato/dipartimento" method="POST">
-            <input type="hidden" name="id" value="<%= impiegato.id %>">
+            <input type="hidden" name="id" value="<%= impiegato.Iid %>">
             <select name="dipartimento" id="dipartimento">
                 <% dipartimenti.forEach(function (dipartimento) { %>
-                    <option value="<%= dipartimento.id %>"><%= dipartimento.nome %></option>
+                    <option value="<%= dipartimento.id %>" <% if (dipartimento.id==impiegato.Did) { %><%= "selected" %><% } %>><%= dipartimento.nome %></option>
                 <% }); %>
             </select>
             <label for="dipartimento">Scegli dipartimento:</label>
-            <input type="submit" value="Aggiungi dipartimento">
+            <input type="submit" value="Assegna a dipartimento">
         </form> 
     </body>
 </html>
