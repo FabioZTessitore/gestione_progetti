@@ -82,4 +82,5 @@ select '';
 
 SELECT I.cognome, D.nome FROM (Impiegati I INNER JOIN Dipartimenti D ON I.id_Dipartimento = D.id);
 select '';
-SELECT I.id, I.cognome, I.nome, D.nome, D.id FROM Impiegati I LEFT JOIN Dipartimenti D ON I.id_dipartimento = D.id WHERE I.id = 1;
+SELECT I.id Iid, I.cognome Icognome, I.nome Inome, D.nome Dnome, D.id Did FROM Impiegati I LEFT JOIN Dipartimenti D ON I.id_dipartimento = D.id WHERE I.id = 1;
+select '';
