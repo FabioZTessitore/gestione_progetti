@@ -62,26 +62,28 @@ module.exports = function (db) {
 
     router.get("/impiegati/:id", function (req, res) {
         const id = req.params.id;
-        sqlImpiegato = "SELECT * FROM (Impiegati I LEFT JOIN Dipartimenti D ON I.id_dipartimento = D.id) WHERE I.id = ?;";
-        sqlDipartimento = "SELECT * FROM Dipartimenti WHERE id = ?";
+        sqlImpiegato = "SELECT I.id Iid, I.cognome Icognome, I.nome Inome, D.nome Dnome, D.id Did FROM Impiegati I LEFT JOIN Dipartimenti D ON I.id_dipartimento = D.id WHERE I.id = ?;";
+        sqlDipartimento = "SELECT * FROM Dipartimenti ORDER BY nome;";
         db.get(sqlImpiegato, [id], function (err, impiegato) {
             db.all(sqlDipartimento, function(err, dipartimenti) {
-                    res.render("admin-impiegato", {
-                        impiegato: impiegato,
-                        dipartimenti: dipartimenti,
-                   });
+                res.render("admin-impiegato", {
+                    impiegato: impiegato,
+                    dipartimenti: dipartimenti,
+                });
             });
        });
     });
 
 
 
-router.post("/impiegato/dipartimento", function (req, res) {
-    sql = "INSERT INTO Impiegati (id_Dipartimento) VALUES (?);";
-    db.run(sql, [req.body.ImpId, req.body.dipartimento], function (err) {
-        res.redirect("/admin/dipartimenti/"+req.body.ImpId);
+    router.post("/impiegato/dipartimento", function (req, res) {
+        /*
+        sql = "INSERT INTO Impiegati (id_Dipartimento) VALUES (?);";
+        db.run(sql, [req.body.ImpId, req.body.dipartimento], function (err) {
+            res.redirect("/admin/dipartimenti/"+req.body.ImpId);
+        });
+        */
     });
-});
 
      
 
