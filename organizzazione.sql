@@ -70,12 +70,13 @@ CREATE TABLE Impiegati
     id INTEGER PRIMARY KEY,
     cognome TEXT,
     nome TEXT,
-    id_dipartimento INTEGER REFERENCES Dipartimenti(id)
+    id_dipartimento INTEGER DEFAULT 0 REFERENCES Dipartimenti(id)
 );
 
 INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Legnante", "Antonio", 1);
 INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Celardo", "Carlo", 1);
 INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Sorgiacomo", "Pasquale", 2);
+INSERT INTO Impiegati (cognome, nome) VALUES ("Miele", "Francesco");
 
 SELECT * FROM Impiegati;
 select '';
@@ -84,3 +85,29 @@ SELECT I.cognome, D.nome FROM (Impiegati I INNER JOIN Dipartimenti D ON I.id_Dip
 select '';
 SELECT I.id Iid, I.cognome Icognome, I.nome Inome, D.nome Dnome, D.id Did FROM Impiegati I LEFT JOIN Dipartimenti D ON I.id_dipartimento = D.id WHERE I.id = 1;
 select '';
+
+SELECT * FROM Impiegati;
+
+DROP TABLE IF EXISTS Progetti;
+CREATE TABLE Progetti
+(
+    id INTEGER PRIMARY KEY,
+    nome TEXT,
+    budjet INTEGER
+);
+
+INSERT INTO Progetti (nome, budjet) VALUES ("Cura per il Covid-19", 100000);
+
+DROP TABLE IF EXISTS Partecipazione;
+CREATE TABLE Partecipazione
+(
+    id INTEGER PRIMARY KEY,
+    id_progetto INTEGER REFERENCES Progetti(id),
+    id_impiegato INTEGER REFERENCES Impiegati(id)
+);
+
+INSERT INTO Partecipazione (id_progetto, id_impiegato) VALUES (1, 1);
+INSERT INTO Partecipazione (id_progetto, id_impiegato) VALUES (1, 2);
+
+SELECT P.nome, I.nome, I.cognome FROM ((Progetti P INNER JOIN Partecipazione Par ON P.id = Par.id_progetto) INNER JOIN Impiegati I ON I.id = Par.id_impiegato);
+

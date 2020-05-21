@@ -24,6 +24,15 @@ module.exports = function (db) {
         });
     });
 
+    router.get("/progetti", function (req, res) {
+        const sqlprogetti = "SELECT * FROM Progetti ORDER BY nome;";
+        db.all(sqlprogetti,function (err, progetti) {
+            res.render("admin-progetti", {
+                progetti: progetti
+            });
+        });
+    });
+
     router.post("/dipartimenti", function (req, res) {
         const nome = req.body.nome;
         const sql = "INSERT INTO Dipartimenti (nome) VALUES (?);";
@@ -39,6 +48,15 @@ module.exports = function (db) {
         const sql = "INSERT INTO Impiegati (cognome, nome) VALUES (?, ?);";
         db.run(sql, [cognome, nome], function (err) {
                res.redirect("/admin/impiegati");
+        });
+    });
+
+    router.post("/progetti", function (req, res) {
+        const nome = req.body.nome;
+        const budjet = req.body.budjet;
+        const sql = "INSERT INTO Progetti (nome, budjet) VALUES (?, ?);";
+        db.run(sql, [nome, budjet], function (err) {
+               res.redirect("/admin/progetti");
         });
     });
 
@@ -77,14 +95,30 @@ module.exports = function (db) {
 
 
     router.post("/impiegato/dipartimento", function (req, res) {
-        /*
-        sql = "INSERT INTO Impiegati (id_Dipartimento) VALUES (?);";
-        db.run(sql, [req.body.ImpId, req.body.dipartimento], function (err) {
-            res.redirect("/admin/dipartimenti/"+req.body.ImpId);
+        sql = "UPDATE Impiegati SET id_dipartimento = ? WHERE id = ?;";
+        db.run(sql, [req.body.dipartimento, req.body.id], function (err) {
+            console.log(err);
+            res.redirect("/admin/impiegati/"+req.body.id);
         });
-        */
     });
 
+    router.get("/progetti/:id", function (req, res) {
+        const id = req.params.id;
+        sqlprogetto = "SELECT * FROM Progetti WHERE id = ?;";
+        sqlimpiegati = "SELECT * FROM Impiegati;";
+        sqlpartecipazione = "SELECT P.nome Progetto, I.nome N, I.cognome C FROM ((Progetti P INNER JOIN Partecipazione Par ON P.id = Par.id_progetto) INNER JOIN Impiegati I ON I.id = Par.id_impiegato) WHERE P.id = ? ORDER BY P.nome;";
+        db.get(sqlprogetto, [id], function (err, progetto) {
+            db.all(sqlimpiegati, function(err, impiegati) {
+                db.all(sqlpartecipazione, [id], function(err, partecipazioni) {
+                    res.render("admin-progetto", {
+                        progetto: progetto,
+                        impiegati: impiegati,
+                        partecipazioni: partecipazioni
+                   });
+                });
+            });
+        });
+    });
      
 
     router.post("/dipartimenti/sedi", function (req, res) {
@@ -105,6 +139,20 @@ module.exports = function (db) {
         const sql = "UPDATE Impiegati SET cognome = ?, nome = ? WHERE id = ?;";
         db.run(sql, [req.body.cognome, req.body.nome, req.body.id], function (err) {
             res.redirect("/admin/impiegati");
+        });
+    });
+
+    router.post("/progetti/edit", function (req, res) {
+        const sql = "UPDATE Progetti SET nome = ?, budjet = ? WHERE id = ?;";
+        db.run(sql, [req.body.nome, req.body.budjet, req.body.id], function (err) {
+            res.redirect("/admin/progetti");
+        });
+    });
+
+    router.post("/progetti/impiegati", function (req, res) {
+        sql = "INSERT INTO Partecipazione (id_progetto, id_impiegato) VALUES (?,?);";
+        db.run(sql, [req.body.nome, req.body.Impiegato], function (err) {
+            res.redirect("/admin/progetti/"+req.body.nome);
         });
     });
 

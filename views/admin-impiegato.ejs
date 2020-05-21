@@ -26,7 +26,7 @@
             <input type="submit" value="Salva">
         </form>
 
-        <p>Dipartimento Attuale: <%= impiegato.Dnome %> (<%= impiegato.Did %>)</p>
+        <p>Dipartimento Attuale: <%= impiegato.Dnome %> </p>
 
         <form action="/admin/impiegato/dipartimento" method="POST">
             <input type="hidden" name="id" value="<%= impiegato.Iid %>">

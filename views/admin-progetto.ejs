@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>ACME - Gestione Progetti - Amministrazione</title>
+    </head>
+
+    <body>
+        <h1>Gestione Progetti</h1>
+
+        <h2>Amministrazione</h2>
+
+        <h3>Progetto <%= progetto.nome %></h3>
+
+        <p><a href="/admin/progetti">Progetti</a></p>
+
+        <form action="/admin/progetti/edit"  method="POST">
+            <input type="hidden" name="id" value="<%= progetto.id %>">
+            <input type="text" name="nome" value="<%= progetto.nome %>">
+            <input type="text" name="budjet" value="<%= progetto.budjet %>">
+            <input type="submit" value="Salva">
+        </form>  
+
+        <form action="/admin/progetti/impiegati" method="POST">
+            <input type="hidden" name="nome" value="<%= progetto.id %>">
+            <select name="Impiegato" id="Impiegato">
+                <% impiegati.forEach(function (impiegato) { %>
+                    <option value="<%= impiegato.id %>"><%= impiegato.nome %></option>
+                <% }); %>
+            </select>
+            <label for="Impiegato">Assegna partecipante:</label>
+            <input type="submit" value="Aggiungi Partecipante">
+        </form> 
+
+
+        <ul>
+            <% partecipazioni.forEach(function (partecipazione) { %>
+                <li><%= partecipazione.Progetto %> - <%= partecipazione.N %> <%= partecipazione.C %></li>
+            <% }); %>
+       </ul>
+    </body>
+    
+</html>
