@@ -5,25 +5,38 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        
         <title>ACME - Gestione Progetti - Amministrazione</title>
     </head>
 
     <body>
-        <h1>Gestione Progetti</h1>
 
+      <ul class="nav">
+        <li class="nav-item">
+          <a class="nav-link active" href="/admin">Admin</a>
+        </li>
+      </ul>
 
+      <div class="container">
+        
+        <h1 class="display-1">Gestione Progetti</h1>
+        
+        <div style="display: flex; flex-wrap: wrap;">
         <% progetti.forEach(function (progetto) { %>
-
-        <div class="card" style="width: 18rem;">
-            <img src="..." class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title"><%= progetto.nome %></h5>
+          
+          <li class="list-group-item">
+            <div class="card" style="width: 18rem;">
+              <img src="https://picsum.photos/id/<%= progetto.id %>/200/100" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%= progetto.nome %></h5>
+                <p class="card-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Saepe reiciendis cupiditate iure nemo facilis, quisquam quaerat itaque ad laboriosam eius officia a nulla magni dicta numquam. Cumque necessitatibus quia aperiam!</p>
+              </div>
             </div>
-          </div>
-         <% }); %>
-
-
-          <p><a href="/admin">Admin</a></p>
-
+          </li>
+          <% }); %>
+        </div>
+          
+      </div>
     </body>
 </html>
