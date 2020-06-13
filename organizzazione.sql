@@ -9,7 +9,14 @@ CREATE TABLE Dipartimenti
 );
 
 INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento B");
+INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento C");
 INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento A");
+INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento D");
+INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento G");
+INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento H");
+INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento L");
+INSERT INTO Dipartimenti (nome) VALUES ("Dipartimento M");
+
 SELECT * FROM Dipartimenti;
 select '';
 
@@ -23,6 +30,12 @@ CREATE TABLE Sedi
 INSERT INTO Sedi (nome) VALUES ("Sede B");
 INSERT INTO Sedi (nome) VALUES ("Sede A");
 INSERT INTO Sedi (nome) VALUES ("Sede C");
+INSERT INTO Sedi (nome) VALUES ("Sede D");
+INSERT INTO Sedi (nome) VALUES ("Sede U");
+INSERT INTO Sedi (nome) VALUES ("Sede O");
+INSERT INTO Sedi (nome) VALUES ("Sede P");
+INSERT INTO Sedi (nome) VALUES ("Sede E");
+
 SELECT * FROM Sedi;
 select '';
 
@@ -96,7 +109,15 @@ CREATE TABLE Progetti
     budjet INTEGER
 );
 
-INSERT INTO Progetti (nome, budjet) VALUES ("Cura per il Covid-19", 100000);
+INSERT INTO Progetti (nome, budjet) VALUES ("Progetto 1", 100000);
+INSERT INTO Progetti (nome, budjet) VALUES ("Progetto 2", 100000);
+INSERT INTO Progetti (nome, budjet) VALUES ("Progetto 3", 100000);
+INSERT INTO Progetti (nome, budjet) VALUES ("Progetto 4", 100000);
+INSERT INTO Progetti (nome, budjet) VALUES ("Progetto 5", 100000);
+INSERT INTO Progetti (nome, budjet) VALUES ("Progetto 6", 100000);
+
+
+SELECT * FROM Progetti;
 
 DROP TABLE IF EXISTS Partecipazione;
 CREATE TABLE Partecipazione

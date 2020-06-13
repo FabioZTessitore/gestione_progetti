@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <title>ACME - Gestione Progetti - Amministrazione</title>
+    </head>
+
+    <body>
+        <h1>Gestione Progetti</h1>
+
+
+        <% progetti.forEach(function (progetto) { %>
+
+        <div class="card" style="width: 18rem;">
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%= progetto.nome %></h5>
+            </div>
+          </div>
+         <% }); %>
+
+
+          <p><a href="/admin">Admin</a></p>
+
+    </body>
+</html>

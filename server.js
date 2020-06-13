@@ -19,12 +19,19 @@ const db = new sqlite3.Database("organizzazione.db", function(err) {
 });
 
 app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "public", "index.html"));
+    sql = "SELECT * FROM Progetti;";
+    db.all(sql, function(err, progetti) {
+    res.render("index", {
+        progetti : progetti,
+        }); 
+    }); 
 });
 
 app.get("/admin", function (req, res) {
     res.sendFile(path.join(__dirname, "public", "index_admin.html"));
 });
+
+
 
 app.use('/admin', adminRoutes(db));
 
