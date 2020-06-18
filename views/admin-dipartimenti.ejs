@@ -4,29 +4,33 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <title>ACME - Gestione Progetti - Amministrazione</title>
     </head>
 
     <body>
-        <h1>Gestione Progetti</h1>
+        <div class="container-fluid">
+        
+            <h1>Gestione Progetti</h1>
+            
+            <h2>Amministrazione</h2>
 
-        <h2>Amministrazione</h2>
-
-        <h3>Dipartimenti</h3>
+            <h3>Dipartimenti</h3>
 
         <p><a href="/admin">Admin</a></p>
-
         <form action = "/admin/dipartimenti"  method="POST">
             <input type="text" name="nome" id="nome">
             <label for="nome">Nome Dipartimento:</label>
-            <input type="submit" value="Crea dipartimento">
+            <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+            Crea dipartimento
+            </button>
         </form>
 
         <ul>
             <% dipartimenti.forEach(function (dipartimento) { %>
-                <li><%= dipartimento.nome %> - <a href="/admin/dipartimenti/<%= dipartimento.id %>">modifica</a></li>
+                <li><%= dipartimento.nome %> - <a href="/admin/dipartimenti/<%= dipartimento.id %>" class="badge badge-primary">Modifica</a></li>
             <% }); %>
        </ul>
+       </div>
     </body>
 </html>

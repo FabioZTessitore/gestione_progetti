@@ -4,39 +4,57 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
         <title>ACME - Gestione Progetti - Amministrazione</title>
     </head>
 
     <body>
+        <div class="container-fluid">
+
         <h1>Gestione Progetti</h1>
 
         <h2>Amministrazione</h2>
 
-        <h3>Impiegato</h3>
+        <h3>Impiegato : <%= impiegato.Icognome %> <%= impiegato.Inome %> </h3>
 
         <p><a href="/admin/impiegati">Impiegati</a></p>
 
-        <form action="/admin/impiegati/edit"  method="POST">
-            <input type="hidden" name="id" value="<%= impiegato.Iid %>">
-            <input type="text" name="cognome" id="cognome" value="<%= impiegato.Icognome %>">
-            <label for="cognome">Cognome:</label>
-            <input type="text" name="nome" id="nome" value="<%= impiegato.Inome %>">
-            <label for="nome">Nome:</label>
-            <input type="submit" value="Salva">
+        <form action ="/admin/impiegati/edit"  method="POST">
+            <div class="row">
+              <div class="col">
+                <input type="hidden" name="id" value="<%= impiegato.Iid %>">
+                <input type="text" class="form-control" name="cognome" id="cognome" value="<%= impiegato.Icognome %>" placeholder="Cognome">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control"  name="nome" id="nome" value="<%= impiegato.Inome %>" placeholder="Nome">
+              </div>
+              <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+                Salva
+                </button>
+            </div>
+          
         </form>
-
-        <p>Dipartimento Attuale: <%= impiegato.Dnome %> </p>
+        <br>
+        <h2>Dipartimento Attuale: <%= impiegato.Dnome %> </h2>
 
         <form action="/admin/impiegato/dipartimento" method="POST">
+            <div class="form-group col-md-4">
             <input type="hidden" name="id" value="<%= impiegato.Iid %>">
-            <select name="dipartimento" id="dipartimento">
+            <select name="dipartimento" id="dipartimento" class="form-control">
                 <% dipartimenti.forEach(function (dipartimento) { %>
-                    <option value="<%= dipartimento.id %>" <% if (dipartimento.id==impiegato.Did) { %><%= "selected" %><% } %>><%= dipartimento.nome %></option>
+                    <option value="<%= dipartimento.id %>" <% if (dipartimento.id==impiegato.Did) { %><%= "selected" %><% } %>> <%= dipartimento.nome %> </option>
                 <% }); %>
             </select>
+            <br>
             <label for="dipartimento">Scegli dipartimento:</label>
-            <input type="submit" value="Assegna a dipartimento">
+            <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+                Assegna dipartimento                
+            </button>
+            </div>
+
+           
         </form> 
+    </div>
     </body>
 </html>

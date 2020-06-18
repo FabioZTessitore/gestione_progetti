@@ -5,9 +5,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>ACME - Gestione Progetti - Amministrazione</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
     </head>
 
     <body>
+        <div class="container-fluid">
+
         <h1>Gestione Progetti</h1>
 
         <h2>Amministrazione</h2>
@@ -16,22 +20,39 @@
 
         <p><a href="/admin/dipartimenti">Dipartimenti</a></p>
 
+    
         <form action="/admin/dipartimenti/edit"  method="POST">
+            <div class="row">
+                <div class="col">
             <input type="hidden" name="id" value="<%= dipartimento.id %>">
-            <input type="text" name="nome" value="<%= dipartimento.nome %>">
-            <input type="submit" value="Salva">
+            <input type="text" class="form-control" name="nome" value="<%= dipartimento.nome %>" placeholder="Nome dipartimento">
+           
+        </div>
+        <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+            Salva
+        </button>
+    </div>
+
         </form>  
+
+        <br>
         
         <form action="/admin/dipartimenti/sedi" method="POST">
+            <label for="Sedi"><h3>Scegli sedi:</h3></label>
+
+            <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+               Assegna sede            
+            </button>   
+            <div class="form-group col-md-4">
+
             <input type="hidden" name="dipId" value="<%= dipartimento.id %>">
-            <select name="sede" id="sede">
+            <select name="sede" id="sede" class="form-control">
                 <% sedi.forEach(function (sede) { %>
                     <option value="<%= sede.id %>"><%= sede.nome %></option>
                 <% }); %>
-            </select>
-            <label for="sede">Scegli sede:</label>
-            <input type="submit" value="Aggiungi sede">
-        </form> 
+            </select> 
+        </div>   
+         </form> 
 
         <ul>
             <% Dipartimenti_Sedi.forEach(function (Dipartimento_sedi) { %>
@@ -40,7 +61,7 @@
        </ul>
                
         <p><a href="/admin/dipartimenti/<%= dipartimento.id %>/sedi">Amministra sedi</a></p>
-
+    </div>
     </body>
     
 </html>

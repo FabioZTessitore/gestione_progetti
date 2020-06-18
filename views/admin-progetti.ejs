@@ -4,11 +4,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
         <title>ACME - Gestione Progetti - Amministrazione</title>
     </head>
 
     <body>
+        <div class="container-fluid">
+
         <h1>Gestione Progetti</h1>
 
         <h2>Amministrazione</h2>
@@ -16,21 +19,33 @@
         <h3>Progetti</h3>
 
         <p><a href="/admin">Admin</a></p>
-
+            
+           
+            Crea Impiegato
+           
+          </form>
         <form action = "/admin/progetti"  method="POST">
-            <input type="text" name="nome" id="nome">
-            <label for="nome">Nome Progetto:</label>
-            <br>
-            <input type="text" name="budjet" id="budjet">
-            <label for="budjet">Inserisci il budjet previsto:</label>
-            <br>
-            <input type="submit" value="Crea Progetto">
-        </form>
+            <div class="row">
+                <div class="col">
+            <input type="text" class="form-control" name="nome" id="nome" placeholder="Nome progetto">
+        </div>
+        <div class="col">
 
+            <input type="text" class="form-control" name="budjet" id="budjet" placeholder="budjet">
+            </div>
+            <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+            Crea progetto
+            </button>
+            </div>
+
+            </form>
+
+            <br>
         <ul>
             <% progetti.forEach(function (progetto) { %>
-                <li><%= progetto.nome %> - <%= progetto.budjet %> - <a href="/admin/progetti/<%= progetto.id %>">modifica</a></li>
+                <li><%= progetto.nome %> - <%= progetto.budjet %> - <a href="/admin/progetti/<%= progetto.id %>" class="badge badge-primary">modifica</a></li>
             <% }); %>
        </ul>
+       </div>
     </body>
 </html>

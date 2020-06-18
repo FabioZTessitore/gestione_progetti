@@ -5,9 +5,13 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>ACME - Gestione Progetti - Amministrazione</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
     </head>
 
     <body>
+        <div class="container-fluid">
+
         <h1>Gestione Progetti</h1>
 
         <h2>Amministrazione</h2>
@@ -17,21 +21,41 @@
         <p><a href="/admin/progetti">Progetti</a></p>
 
         <form action="/admin/progetti/edit"  method="POST">
-            <input type="hidden" name="id" value="<%= progetto.id %>">
-            <input type="text" name="nome" value="<%= progetto.nome %>">
-            <input type="text" name="budjet" value="<%= progetto.budjet %>">
-            <input type="submit" value="Salva">
-        </form>  
+            <div class="row">
+                <div class="col">
 
+            <input type="hidden" name="id" value="<%= progetto.id %>">
+            <input type="text"  class="form-control" name="nome" value="<%= progetto.nome %>">
+            </div>
+            <div class="col">
+             <input type="text"  class="form-control" name="budjet" value="<%= progetto.budjet %>">
+            </div>
+
+             <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+                Salva
+            </button>  
+         </div>
+
+            
+        </form>  
+  
+        <br>
         <form action="/admin/progetti/impiegati" method="POST">
+            <label for="Impiegato"><h3>Assegna partecipante:</h3></label>
+            <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+            Aggiungi partecipante                
+            </button>
+            <div class="form-group col-md-4">
+
             <input type="hidden" name="nome" value="<%= progetto.id %>">
-            <select name="Impiegato" id="Impiegato">
+            <select name="Impiegato" id="Impiegato" class="form-control">
                 <% impiegati.forEach(function (impiegato) { %>
                     <option value="<%= impiegato.id %>"><%= impiegato.nome %></option>
                 <% }); %>
             </select>
-            <label for="Impiegato">Assegna partecipante:</label>
-            <input type="submit" value="Aggiungi Partecipante">
+        </div>
+          
+        
         </form> 
 
 
@@ -40,6 +64,7 @@
                 <li><%= partecipazione.Progetto %> - <%= partecipazione.N %> <%= partecipazione.C %></li>
             <% }); %>
        </ul>
+       </div>
     </body>
     
 </html>

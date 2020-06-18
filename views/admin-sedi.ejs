@@ -4,11 +4,14 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
         <title>ACME - Gestione Progetti - Amministrazione</title>
     </head>
 
     <body>
+        <div class="container-fluid">
+
         <h1>Gestione Progetti</h1>
 
         <h2>Amministrazione</h2>
@@ -18,29 +21,48 @@
         <p><a href="/admin/dipartimenti/<%= dipId %>">Dipartimento</a></p>
 
         <form action="/admin/sedi"  method="POST">
-            <input type="hidden" name="dipId" value="<%= dipId %>">
+                <div class="form-row">
+                  <div class="col-md-6 mb-3">
+                    <input type="hidden" name="dipId" value="<%= dipId %>">
+                    <label for="nome">Nome sede:</label>
+                    <input type="text" class="form-control" name="nome" id="nome" required>
+                    <div class="valid-feedback">
+                    </div>
+               
+                <div class="form-row">
+                  <div class="col-md-6 mb-3">
+                    <label for="indirizzo">Indirizzo:</label>
+                    <input type="text" class="form-control" name="indirizzo" id="indirizzo"  required>
+                    <div class="valid-feedback">
+                   </div>
+                  </div>
 
-            <input type="text" name="nome" id="nome"> 
-            <label for="nome">Nome Sede:</label>
-            <br>
-            <input type="text" name="indirizzo" id="indirizzo">
-            <label for="nome">Indirizzo:</label>
-            <br>
-            <input type="text" name="cap" id="cap">
-            <label for="cap">Cap:</label>
-            <br>
-            <input type="text" name="citta" id="citta">
-            <label for="citta">Città:</label>
-            <br>
-            <input type="submit" value="Crea Sede">
-        </form>
+                  <div class="col-md-3 mb-3">
+                    <label for="cap">CAP:</label>
+                    <input type="text" class="form-control" name="cap" id="cap" required>
+                    <div class="valid-feedback">
+                    </div>
+                    
+                  </div>
+
+                <div class="col-md-3 mb-3">
+                    <label for="citta">Città:</label>
+                    <input type="text" class="form-control" name="citta" id="citta" required>
+                    <div class="valid-feedback">
+                </div>
+               </div>
+               </div>
+
+                <button class="btn btn-primary" type="submit">Crea Sede</button>
+              </form>
+          
 
         <ul>
             <% sedi.forEach(function (sedi) { %>
                 <li><%= sedi.nome %> - <%= sedi.indirizzo %> - <%= sedi.cap %> - <%= sedi.citta %> </li>
             <% }); %>
         </ul>
-
+     </div>
     </body>
     
 </html>

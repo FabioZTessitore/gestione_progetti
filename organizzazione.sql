@@ -1,7 +1,8 @@
 .header on
 .mode column
 
-DROP TABLE IF EXISTS Dipartimenti;
+DROP TABLE IF EXISTS Dipartimenti;INSERT INTO Progetti (nome, budjet) VALUES ("Progetto 6", 100000);
+
 CREATE TABLE Dipartimenti
 (
     id INTEGER PRIMARY KEY,
@@ -32,9 +33,7 @@ INSERT INTO Sedi (nome) VALUES ("Sede A");
 INSERT INTO Sedi (nome) VALUES ("Sede C");
 INSERT INTO Sedi (nome) VALUES ("Sede D");
 INSERT INTO Sedi (nome) VALUES ("Sede U");
-INSERT INTO Sedi (nome) VALUES ("Sede O");
-INSERT INTO Sedi (nome) VALUES ("Sede P");
-INSERT INTO Sedi (nome) VALUES ("Sede E");
+
 
 SELECT * FROM Sedi;
 select '';
@@ -51,6 +50,17 @@ INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (1,2);
 INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (1,3);
 INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (2,1);
 INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (2,3);
+INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (3,5);
+INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (4,3);
+INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (6,3);
+INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (6,5);
+INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (8,4);
+INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (1,4);
+INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (7,4);
+INSERT INTO Dipartimenti_Sedi (id_Dipartimenti, id_Sedi) VALUES (7,1);
+
+
+
 
 SELECT D.nome, S.nome FROM ((Dipartimenti D INNER JOIN Dipartimenti_Sedi Ds ON D.id = Ds.id_Dipartimenti) INNER JOIN Sedi S ON S.id = DS.id_Sedi) WHERE D.id = 1;
 select '';
@@ -65,8 +75,10 @@ CREATE TABLE Indirizzo
     id_sedi INTEGER REFERENCES Sedi(id)
 );
 INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES ("Cardito", "Via Napoli 5", "80024", 1);
-INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES ("non lo so", "Via Gattini", "80024 Gatto", 2);
-INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES ("non so", "Via non so", "800 non so", 3);
+INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES ("Milano", "Via Alessandro Manzoni 56", "20019", 2);
+INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES ("Napoli", "Piazza San Carlo 13", "80100", 3);
+INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES ("Salerno", "Via Antonio da Legnago 71", "84121", 4);
+INSERT INTO Indirizzo (citta, indirizzo, cap, id_sedi) VALUES ("Bologna", "Piazza Cardinale Riario Sforza 83", "40121", 5);
 
 SELECT * FROM Indirizzo;
 select '';
@@ -87,9 +99,19 @@ CREATE TABLE Impiegati
 );
 
 INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Legnante", "Antonio", 1);
-INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Celardo", "Carlo", 1);
-INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Sorgiacomo", "Pasquale", 2);
-INSERT INTO Impiegati (cognome, nome) VALUES ("Miele", "Francesco");
+INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Milanesi", "Raniero", 1);
+INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Smeralda", "Milanocomo", 2);
+INSERT INTO Impiegati (cognome, nome) VALUES ("Galdino", "Lettiere");
+INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Emiliano", "Trevisani", 3);
+INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Agostina", "Piccio", 3);
+INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Celeste", "Iadanza", 4);
+INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Galileo", "Moretti", 5);
+INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Ausilia", "Dellucci", 5);
+INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Ezio", "Pagnotto", 7);
+INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Germano", "Baresi", 8);
+INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Doda", "Padovano", 8);
+INSERT INTO Impiegati (cognome, nome, id_Dipartimento) VALUES ("Artemio", "Marino", 8);
+
 
 SELECT * FROM Impiegati;
 select '';
@@ -129,6 +151,16 @@ CREATE TABLE Partecipazione
 
 INSERT INTO Partecipazione (id_progetto, id_impiegato) VALUES (1, 1);
 INSERT INTO Partecipazione (id_progetto, id_impiegato) VALUES (1, 2);
+INSERT INTO Partecipazione (id_progetto, id_impiegato) VALUES (2, 4);
+INSERT INTO Partecipazione (id_progetto, id_impiegato) VALUES (2, 6);
+INSERT INTO Partecipazione (id_progetto, id_impiegato) VALUES (3, 4);
+INSERT INTO Partecipazione (id_progetto, id_impiegato) VALUES (6, 3);
+INSERT INTO Partecipazione (id_progetto, id_impiegato) VALUES (9, 5);
+INSERT INTO Partecipazione (id_progetto, id_impiegato) VALUES (5, 5);
+INSERT INTO Partecipazione (id_progetto, id_impiegato) VALUES (7, 5);
+
+
+
 
 SELECT P.nome, I.nome, I.cognome FROM ((Progetti P INNER JOIN Partecipazione Par ON P.id = Par.id_progetto) INNER JOIN Impiegati I ON I.id = Par.id_impiegato);
 

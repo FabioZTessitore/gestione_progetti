@@ -4,11 +4,13 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
         <title>ACME - Gestione Progetti - Amministrazione</title>
     </head>
 
     <body>
+        <div class="container-fluid">
+
         <h1>Gestione Progetti</h1>
 
         <h2>Amministrazione</h2>
@@ -16,19 +18,30 @@
         <h3>Impiegati</h3>
 
         <p><a href="/admin">Admin</a></p>
-
         <form action = "/admin/impiegati"  method="POST">
-            <input type="text" name="cognome" id="cognome">
-            <label for="cognome">Cognome:</label>
-            <input type="text" name="nome" id="nome">
-            <label for="nome">Nome:</label>
-            <input type="submit" value="Crea impiegato">
-        </form>
-
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" name="cognome" id="cognome" placeholder="Cognome">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control"  name="nome" id="nome" placeholder="Nome">
+              </div>
+             
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+            Crea Impiegato
+            </button>
+           
+          </form>
+        
+        <h2>Lista Impiegati</h2>
         <ul>
             <% impiegati.forEach(function (impiegato) { %>
-                <li><%= impiegato.cognome %> <%= impiegato.nome %> - <a href="/admin/impiegati/<%= impiegato.id %>">modifica</a></li>
+                <li><%= impiegato.cognome %> <%= impiegato.nome %> <a href="/admin/impiegati/<%= impiegato.id %>" class="badge badge-primary">Modifica</a></li>
             <% }); %>
        </ul>
+    </div>
+
     </body>
 </html>
