@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <div class="container-fluid">
+        <div class="container">
         
             <h1>Gestione Progetti</h1>
             
@@ -17,20 +17,27 @@
 
             <h3>Dipartimenti</h3>
 
-        <p><a href="/admin">Admin</a></p>
-        <form action = "/admin/dipartimenti"  method="POST">
-            <input type="text" name="nome" id="nome">
-            <label for="nome">Nome Dipartimento:</label>
-            <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
-            Crea dipartimento
-            </button>
-        </form>
+            <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link active" href="/admin">Admin</a>
+                </li>
+            </ul>
 
-        <ul>
+            <form action="/admin/dipartimenti" method="POST">
+                <div class="form-group">
+                    <label for="nome">Nome Dipartimento:</label>
+                    <input type="text" class="form-control" name="nome" id="nome">
+                </div>
+                <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+                    Crea dipartimento
+                </button>
+            </form>
+
+            <ul class="list-group mt-5">
             <% dipartimenti.forEach(function (dipartimento) { %>
-                <li><%= dipartimento.nome %> - <a href="/admin/dipartimenti/<%= dipartimento.id %>" class="badge badge-primary">Modifica</a></li>
+                <li class="list-group-item"><%= dipartimento.nome %> - <a href="/admin/dipartimenti/<%= dipartimento.id %>" class="badge badge-warning">Modifica</a></li>
             <% }); %>
-       </ul>
+            </ul>
        </div>
     </body>
 </html>
