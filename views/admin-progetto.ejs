@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <div class="container-fluid">
+        <div class="container">
 
         <h1>Gestione Progetti</h1>
 
@@ -59,9 +59,9 @@
         </form> 
 
 
-        <ul>
+        <ul class="list-group mt-5">
             <% partecipazioni.forEach(function (partecipazione) { %>
-                <li><%= partecipazione.Progetto %> - <%= partecipazione.N %> <%= partecipazione.C %></li>
+                <li class="list-group-item"><%= partecipazione.Progetto %> - <%= partecipazione.N %> <%= partecipazione.C %></li>
             <% }); %>
        </ul>
        </div>

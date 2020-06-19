@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <div class="container-fluid">
+        <div class="container">
 
         <h1>Gestione Progetti</h1>
 
@@ -19,11 +19,7 @@
         <h3>Progetti</h3>
 
         <p><a href="/admin">Admin</a></p>
-            
-           
-            Crea Impiegato
-           
-          </form>
+                       
         <form action = "/admin/progetti"  method="POST">
             <div class="row">
                 <div class="col">
@@ -41,9 +37,9 @@
             </form>
 
             <br>
-        <ul>
+        <ul class="list-group mt-5">
             <% progetti.forEach(function (progetto) { %>
-                <li><%= progetto.nome %> - <%= progetto.budjet %> - <a href="/admin/progetti/<%= progetto.id %>" class="badge badge-primary">modifica</a></li>
+                <li class="list-group-item"><%= progetto.nome %> - <%= progetto.budjet %> - <a href="/admin/progetti/<%= progetto.id %>"  class="badge badge-warning">modifica</a></li>
             <% }); %>
        </ul>
        </div>

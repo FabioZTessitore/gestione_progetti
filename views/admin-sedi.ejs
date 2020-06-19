@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <div class="container-fluid">
+        <div class="container">
 
         <h1>Gestione Progetti</h1>
 
@@ -57,9 +57,9 @@
               </form>
           
 
-        <ul>
+        <ul class="list-group mt-5">
             <% sedi.forEach(function (sedi) { %>
-                <li><%= sedi.nome %> - <%= sedi.indirizzo %> - <%= sedi.cap %> - <%= sedi.citta %> </li>
+                <li class="list-group-item"><%= sedi.nome %> - <%= sedi.indirizzo %> - <%= sedi.cap %> - <%= sedi.citta %> </li>
             <% }); %>
         </ul>
      </div>

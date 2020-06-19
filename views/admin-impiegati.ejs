@@ -9,7 +9,7 @@
     </head>
 
     <body>
-        <div class="container-fluid">
+        <div class="container">
 
         <h1>Gestione Progetti</h1>
 
@@ -36,9 +36,9 @@
           </form>
         
         <h2>Lista Impiegati</h2>
-        <ul>
+        <ul class="list-group mt-5">
             <% impiegati.forEach(function (impiegato) { %>
-                <li><%= impiegato.cognome %> <%= impiegato.nome %> <a href="/admin/impiegati/<%= impiegato.id %>" class="badge badge-primary">Modifica</a></li>
+                <li class="list-group-item"><%= impiegato.cognome %> <%= impiegato.nome %> <a href="/admin/impiegati/<%= impiegato.id %>"  class="badge badge-warning">Modifica</a></li>
             <% }); %>
        </ul>
     </div>

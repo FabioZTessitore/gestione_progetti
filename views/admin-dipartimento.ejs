@@ -10,7 +10,7 @@
     </head>
 
     <body>
-        <div class="container-fluid">
+        <div class="container">
 
         <h1>Gestione Progetti</h1>
 
@@ -54,9 +54,9 @@
         </div>   
          </form> 
 
-        <ul>
+        <ul class="list-group mt-5">
             <% Dipartimenti_Sedi.forEach(function (Dipartimento_sedi) { %>
-                <li><%= Dipartimento_sedi.nome %> - <%= Dipartimento_sedi.indirizzo %> - <%= Dipartimento_sedi.citta %></li>
+                <li class="list-group-item"><%= Dipartimento_sedi.nome %> - <%= Dipartimento_sedi.indirizzo %> - <%= Dipartimento_sedi.citta %></li>
             <% }); %>
        </ul>
                
