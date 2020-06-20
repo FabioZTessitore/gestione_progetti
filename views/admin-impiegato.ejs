@@ -41,17 +41,17 @@
         <form action="/admin/impiegato/dipartimento" method="POST">
             <div class="form-group col-md-4">
             <input type="hidden" name="id" value="<%= impiegato.Iid %>">
+            <label for="dipartimento">Scegli dipartimento:</label>
             <select name="dipartimento" id="dipartimento" class="form-control">
                 <% dipartimenti.forEach(function (dipartimento) { %>
                     <option value="<%= dipartimento.id %>" <% if (dipartimento.id==impiegato.Did) { %><%= "selected" %><% } %>> <%= dipartimento.nome %> </option>
                 <% }); %>
             </select>
             <br>
-            <label for="dipartimento">Scegli dipartimento:</label>
+        </div>
             <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
                 Assegna dipartimento                
             </button>
-            </div>
 
            
         </form> 

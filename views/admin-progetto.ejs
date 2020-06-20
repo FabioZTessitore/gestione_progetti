@@ -41,19 +41,21 @@
   
         <br>
         <form action="/admin/progetti/impiegati" method="POST">
-            <label for="Impiegato"><h3>Assegna partecipante:</h3></label>
-            <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
-            Aggiungi partecipante                
-            </button>
-            <div class="form-group col-md-4">
-
             <input type="hidden" name="nome" value="<%= progetto.id %>">
+            
+            <div class="form-group col-md-4">
+                
+                <label for="Impiegato"><h3>Assegna partecipante:</h3></label>
             <select name="Impiegato" id="Impiegato" class="form-control">
                 <% impiegati.forEach(function (impiegato) { %>
                     <option value="<%= impiegato.id %>"><%= impiegato.nome %></option>
                 <% }); %>
             </select>
         </div>
+
+            <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+                Aggiungi partecipante                
+                </button>
           
         
         </form> 

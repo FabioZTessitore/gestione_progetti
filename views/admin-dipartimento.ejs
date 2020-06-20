@@ -40,9 +40,7 @@
         <form action="/admin/dipartimenti/sedi" method="POST">
             <label for="Sedi"><h3>Scegli sedi:</h3></label>
 
-            <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
-               Assegna sede            
-            </button>   
+            
             <div class="form-group col-md-4">
 
             <input type="hidden" name="dipId" value="<%= dipartimento.id %>">
@@ -52,6 +50,9 @@
                 <% }); %>
             </select> 
         </div>   
+        <button type="submit" class="btn btn-primary" data-toggle="button" aria-pressed="false">
+            Assegna sede            
+         </button>   
          </form> 
 
         <ul class="list-group mt-5">
